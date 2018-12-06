@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcc.example.com.lowonganpekerjaan.Fragment.HomeView;
+import tcc.example.com.lowonganpekerjaan.View.Fragment.Home.HomeView;
 import tcc.example.com.lowonganpekerjaan.Model.Pekerjaan;
 import tcc.example.com.lowonganpekerjaan.R;
 
@@ -58,15 +58,13 @@ public class PekerjaanAdapter extends RecyclerView.Adapter<PekerjaanAdapter.View
             judul = itemView.findViewById(R.id.tv_list_event_title);
             tanggal=itemView.findViewById(R.id.tanggal);
             type =itemView.findViewById(R.id.type);
-            perusahaan=itemView.findViewById(R.id.perusahaan);
             pendidikan=itemView.findViewById(R.id.pendidikan);
             lokasi=itemView.findViewById(R.id.lokasi);
         }
         public void bind(final Pekerjaan pekerjaan){
             judul.setText(pekerjaan.getTitle());
             tanggal.setText(pekerjaan.getTanggal());
-            type.setText(pekerjaan.getType());
-            perusahaan.setText(pekerjaan.getPerusahaan());
+//            type.setText(pekerjaan.getType());
             pendidikan.setText(pekerjaan.getPendidikan());
             lokasi.setText(pekerjaan.getLokasi());
             if(pekerjaan.getImage() != null) Picasso.get().load(pekerjaan.getImage()).fit().centerInside().into(cover);

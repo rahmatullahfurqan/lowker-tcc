@@ -1,4 +1,4 @@
-package tcc.example.com.lowonganpekerjaan.Fragment;
+package tcc.example.com.lowonganpekerjaan.View.Fragment.Home;
 
 
 import android.content.Intent;
@@ -27,6 +27,7 @@ public class HomeFragment extends Fragment implements HomeView {
     List<Pekerjaan> pekerjaanList = new ArrayList<>();
     RecyclerView rvJobs;
     PekerjaanAdapter pekerjaanAdapter;
+    HomePresenter homePresenter;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -43,32 +44,33 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Pekerjaan p = new Pekerjaan();
-        p.setId(1);
-        p.setTitle("Android Developer");
-        p.setImage("https://cdn0-production-images-kly.akamaized.net/HO9I2UDBLapmtSphCma1bjY7Us4=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2362997/original/074516100_1537355462-apa_yang_salah_dari_foto_ini.jpg6.jpg");
-        p.setType("Part Time");
-        p.setTanggal("29 September 2018");
-        p.setPerusahaan("Software House");
-        p.setPendidikan("SMA");
-        p.setLokasi("Yogyakarta");
-        p.setKeterangan("butuh seorang developer handal");
-        pekerjaanList.add(p);
-        pekerjaanList.add(p);
-        pekerjaanList.add(p);
         rvJobs=view.findViewById(R.id.rv_jobs);
-        rvJobs.setLayoutManager(new LinearLayoutManager(this.getContext()));
         pekerjaanAdapter=new PekerjaanAdapter(pekerjaanList,getContext(),this);
+        rvJobs.setLayoutManager(new LinearLayoutManager(this.getContext()));
         rvJobs.setAdapter(pekerjaanAdapter);
+        homePresenter=new HomePresenter(this);
+        homePresenter.getData();
     }
 
     @Override
     public void detail(Pekerjaan pekerjaan) {
        startActivity(new Intent(getContext(),DetailHomeActivity.class)
                .putExtra("cover",pekerjaan.getImage())
-               .putExtra("perusahaan",pekerjaan.getPerusahaan())
+               .putExtra("id_vacancies",String.valueOf(pekerjaan.getId()))
                .putExtra("tanggal",pekerjaan.getTanggal())
                .putExtra("judul",pekerjaan.getTitle())
                .putExtra("keterangan",pekerjaan.getKeterangan()));
+    }
+
+    @Override
+    public void getDataSuccses(List<Pekerjaan> pekerjaan) {
+        pekerjaanList.clear();
+        pekerjaanList.addAll(pekerjaan);
+        pekerjaanAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void getDataFailed() {
+        Toast.makeText(getContext(),"gaga'",Toast.LENGTH_SHORT).show();
     }
 }

@@ -8,12 +8,6 @@
         android:title="Jobs"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_pasang_lowker"
-        android:enabled="true"
-        android:icon="@drawable/ic_add_circle_black_24dp"
-        android:title="Pasang Lowker"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/action_profil"
         android:enabled="true"
         android:icon="@drawable/profil"

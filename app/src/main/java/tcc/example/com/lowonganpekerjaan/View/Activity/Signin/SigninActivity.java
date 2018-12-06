@@ -1,4 +1,4 @@
-package tcc.example.com.lowonganpekerjaan.Signin;
+package tcc.example.com.lowonganpekerjaan.View.Activity.Signin;
 
 
 import android.content.Context;
@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import tcc.example.com.lowonganpekerjaan.MainActivity;
+import tcc.example.com.lowonganpekerjaan.Model.User;
+import tcc.example.com.lowonganpekerjaan.View.Activity.MainActivity;
 import tcc.example.com.lowonganpekerjaan.R;
+import tcc.example.com.lowonganpekerjaan.View.Activity.Signup.SignupActivity;
 
 
 public class SigninActivity extends AppCompatActivity implements SigninContract {
@@ -25,7 +27,7 @@ public class SigninActivity extends AppCompatActivity implements SigninContract 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
-        userDetails = this.getSharedPreferences("userdetails",  Context.MODE_PRIVATE);
+        userDetails = getSharedPreferences("userdetails",  Context.MODE_PRIVATE);
         if (!userDetails.getString("username","").equals("")){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
@@ -63,7 +65,7 @@ public class SigninActivity extends AppCompatActivity implements SigninContract 
 
     @Override
     public void signup() {
-        //startActivity(new Intent(this, SignupActivity.class));
+        startActivity(new Intent(this, SignupActivity.class));
     }
 
     @Override
@@ -72,22 +74,27 @@ public class SigninActivity extends AppCompatActivity implements SigninContract 
     }
 
     @Override
-    public void wrongPass(int i) {
-        Toast.makeText(this, String.valueOf(i), Toast.LENGTH_SHORT).show();
+    public void wrongPass() {
+        Toast.makeText(this,"username atau password salah", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void loginSuccess() {
+    public void loginSuccess(User user) {
         SharedPreferences.Editor edit = userDetails.edit();
         edit.putString("username",username);
         edit.putString("password",password);
+        edit.putString("id",String.valueOf(user.getId()));
+        edit.putString("address",user.getAddres());
+        edit.putString("name",user.getFirstName()+" "+user.getLastName());
+        edit.putString("age",String.valueOf(user.getAge()));
         edit.commit();
-        Toast.makeText(getApplicationContext(),"sukses cuk",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"berhasil login",Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
     @Override
-    public void loginFailed(String f) {
-        Toast.makeText(getApplicationContext(),f,Toast.LENGTH_SHORT).show();
+    public void loginFailed() {
+        Toast.makeText(getApplicationContext(),"gagal",Toast.LENGTH_SHORT).show();
     }
+
 
 }

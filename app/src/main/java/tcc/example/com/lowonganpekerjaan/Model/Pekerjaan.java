@@ -3,40 +3,30 @@ package tcc.example.com.lowonganpekerjaan.Model;
 import com.google.gson.annotations.SerializedName;
 
 public class Pekerjaan {
-    @SerializedName("image")
+    @SerializedName("image_url")
     private String image;
 
     @SerializedName("id")
     private int id;
 
-    @SerializedName("title")
+    @SerializedName("name")
     private String title;
 
-    @SerializedName("type")
-    private String type;
+//    @SerializedName("type")
+//    private String type;
 
-    @SerializedName("keterangan")
+    @SerializedName("about")
     private String keterangan;
 
-    public String getKeterangan() {
-        return keterangan;
-    }
-
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
-    }
-
-    @SerializedName("pendidikan")
+    @SerializedName("education")
     private String pendidikan;
 
-    @SerializedName("lokasi")
+    @SerializedName("location")
     private String lokasi;
 
-    @SerializedName("tanggal")
+    @SerializedName("date_start")
     private String tanggal;
 
-    @SerializedName("perusahaan")
-    private String perusahaan;
 
     public String getPendidikan() {
         return pendidikan;
@@ -60,14 +50,6 @@ public class Pekerjaan {
 
     public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
-    }
-
-    public String getPerusahaan() {
-        return perusahaan;
-    }
-
-    public void setPerusahaan(String perusahaan) {
-        this.perusahaan = perusahaan;
     }
 
     public String getImage() {
@@ -94,11 +76,20 @@ public class Pekerjaan {
         this.title = title;
     }
 
-    public String getType() {
-        return type;
+//    public String getType() {
+//        return type;
+//    }
+//
+//    public void setType(String type) {
+//        this.type = type;
+//    }
+
+    public String getKeterangan() {
+        return keterangan;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
+
 }

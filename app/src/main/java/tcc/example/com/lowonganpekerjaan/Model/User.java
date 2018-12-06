@@ -9,6 +9,8 @@ public class User {
     @Expose
     private String addres;
 
+    @SerializedName("age")
+    @Expose
     private int age;
 
     @SerializedName("last_name")
