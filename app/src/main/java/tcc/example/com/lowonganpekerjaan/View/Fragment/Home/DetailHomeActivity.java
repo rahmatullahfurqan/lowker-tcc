@@ -99,7 +99,7 @@ public class DetailHomeActivity extends AppCompatActivity {
         });
     }
     void sukses(){
-        Toast.makeText(this,"kami akan merekomendasikan anda :)",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"jangan lupa kirim lamaran, kami akan merekomendasikan anda :)",Toast.LENGTH_SHORT).show();
     }
     void gagal(int i){
         Toast.makeText(this,String.valueOf(i),Toast.LENGTH_SHORT).show();
