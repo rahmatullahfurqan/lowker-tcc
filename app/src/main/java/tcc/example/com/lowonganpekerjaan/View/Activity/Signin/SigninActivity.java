@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import tcc.example.com.lowonganpekerjaan.Model.User;
@@ -22,17 +23,16 @@ public class SigninActivity extends AppCompatActivity implements SigninContract 
     private String password,username;
     private Button masuk, daftar;
     private SharedPreferences userDetails;
-
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
         userDetails = getSharedPreferences("userdetails",  Context.MODE_PRIVATE);
-        if (!userDetails.getString("username","").equals("")){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        }
         pass = findViewById(R.id.et_signin_pass);
         user = findViewById(R.id.et_signin_user);
+        progressBar=findViewById(R.id.progres_bar);
+        progressBar.setVisibility(View.INVISIBLE);
         daftar = findViewById(R.id.btn_signin_daftar);
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +59,7 @@ public class SigninActivity extends AppCompatActivity implements SigninContract 
             formBelumLegkap();
         }
         else {
+            progressBar.setVisibility(View.VISIBLE);
             new SigninPresenter(this).getLogin(username, password);
         }
         }
@@ -80,6 +81,7 @@ public class SigninActivity extends AppCompatActivity implements SigninContract 
 
     @Override
     public void loginSuccess(User user) {
+        progressBar.setVisibility(View.INVISIBLE);
         SharedPreferences.Editor edit = userDetails.edit();
         edit.putString("username",username);
         edit.putString("password",password);

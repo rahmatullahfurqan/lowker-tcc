@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import tcc.example.com.lowonganpekerjaan.Model.Signup;
@@ -18,6 +19,7 @@ public class SignupActivity extends AppCompatActivity implements SignupView{
 
     EditText etFirstName,etLastName,etAge,etEmail,etPassword,etAddress,etPasswordConfirm;
     Button btnSignup;
+    ProgressBar progressBar;
     SignupPresenter signupPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,8 @@ public class SignupActivity extends AppCompatActivity implements SignupView{
         etAddress=findViewById(R.id.et_signup_address);
         etAge=findViewById(R.id.et_signup_age);
         etEmail=findViewById(R.id.et_signup_email);
+        progressBar=findViewById(R.id.progres_bar);
+        progressBar.setVisibility(View.INVISIBLE);
         etFirstName=findViewById(R.id.et_signup_namadepan);
         etLastName=findViewById(R.id.et_signup_namabelakang);
         etPassword=findViewById(R.id.et_signup_password);
@@ -73,6 +77,7 @@ public class SignupActivity extends AppCompatActivity implements SignupView{
 
     public void inputData()
     {
+        progressBar.setVisibility(View.VISIBLE);
         Signup data = new Signup();
         data.setAddres(etAddress.getText().toString());
         data.setAge(etAge.getText().toString());
@@ -86,6 +91,7 @@ public class SignupActivity extends AppCompatActivity implements SignupView{
 
     @Override
     public void setDataSuccess() {
+        progressBar.setVisibility(View.INVISIBLE);
         Toast.makeText(getApplicationContext(),"pendaftaran berhasil, login untuk masuk",Toast.LENGTH_SHORT).show();
         SharedPreferences userDetails = getSharedPreferences("userdetails",  Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = userDetails.edit();

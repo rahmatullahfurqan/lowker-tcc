@@ -46,6 +46,7 @@ public class ProfileFragment extends Fragment implements ProfileView{
         userDetails = this.getActivity().getSharedPreferences("userdetails",  Context.MODE_PRIVATE);
 //        profilePresenter=new ProfilePresenter(this);
 //        profilePresenter.getData(userDetails.getString("id","error"));
+
         onSuccses();
     }
 

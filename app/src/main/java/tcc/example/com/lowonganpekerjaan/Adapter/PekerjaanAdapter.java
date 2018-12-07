@@ -39,7 +39,7 @@ public class PekerjaanAdapter extends RecyclerView.Adapter<PekerjaanAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(pekerjaanList.get(position));
+            holder.bind(pekerjaanList.get(position));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class PekerjaanAdapter extends RecyclerView.Adapter<PekerjaanAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView cover;
-        TextView judul,tanggal,type,perusahaan,pendidikan,lokasi;
+        TextView judul,tanggal,type,pendidikan,lokasi;
         CardView cv;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,7 +64,7 @@ public class PekerjaanAdapter extends RecyclerView.Adapter<PekerjaanAdapter.View
         public void bind(final Pekerjaan pekerjaan){
             judul.setText(pekerjaan.getTitle());
             tanggal.setText(pekerjaan.getTanggal());
-//            type.setText(pekerjaan.getType());
+            type.setText(pekerjaan.getType());
             pendidikan.setText(pekerjaan.getPendidikan());
             lokasi.setText(pekerjaan.getLokasi());
             if(pekerjaan.getImage() != null) Picasso.get().load(pekerjaan.getImage()).fit().centerInside().into(cover);

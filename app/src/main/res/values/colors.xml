@@ -7,4 +7,8 @@
     <color name="black">#000000</color>
     <color name="btn">#c3181616</color>
     <color name="biru">#c93061b1</color>
+    <color name="transparent">#00f7f7f7</color>
+    <color name="indicator_selected">#042e26</color>
+    <color name="indicator_default">#5767FF</color>
+    <color name="backgroundSplash">#022D24</color>\
 </resources>

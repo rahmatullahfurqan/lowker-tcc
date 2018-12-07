@@ -12,8 +12,8 @@ public class Pekerjaan {
     @SerializedName("name")
     private String title;
 
-//    @SerializedName("type")
-//    private String type;
+    @SerializedName("tipe")
+    private String type;
 
     @SerializedName("about")
     private String keterangan;
@@ -76,13 +76,13 @@ public class Pekerjaan {
         this.title = title;
     }
 
-//    public String getType() {
-//        return type;
-//    }
-//
-//    public void setType(String type) {
-//        this.type = type;
-//    }
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getKeterangan() {
         return keterangan;

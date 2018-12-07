@@ -20,7 +20,7 @@ import tcc.example.com.lowonganpekerjaan.R;
 import tcc.example.com.lowonganpekerjaan.Service;
 
 public class DetailHomeActivity extends AppCompatActivity {
-    TextView judul,tanggal,keterangan;
+    TextView judul,tanggal,keterangan,tipe;
     ImageView cover;
     SharedPreferences userDetails;
     String username,name,address,age,idUser,idVacancies,nameVacancies,detailVacancies;
@@ -35,10 +35,12 @@ public class DetailHomeActivity extends AppCompatActivity {
         cover=findViewById(R.id.iv_list_event_cover);
         keterangan=findViewById(R.id.keterangan);
         submit=findViewById(R.id.btn_submit);
+        tipe=findViewById(R.id.type);
         userDetails = getSharedPreferences("userdetails",  Context.MODE_PRIVATE);
         username=userDetails.getString("username","");
         name=userDetails.getString("name","");
         age=userDetails.getString("age","");
+        tipe.setText(getIntent().getStringExtra("type"));
         address=userDetails.getString("address","");
         idUser=userDetails.getString("id","");
         idVacancies=getIntent().getStringExtra("id_vacancies");

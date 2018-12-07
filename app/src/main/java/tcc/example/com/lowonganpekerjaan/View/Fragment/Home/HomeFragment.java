@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class HomeFragment extends Fragment implements HomeView {
     RecyclerView rvJobs;
     PekerjaanAdapter pekerjaanAdapter;
     HomePresenter homePresenter;
+    ProgressBar progressBar;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -45,10 +47,12 @@ public class HomeFragment extends Fragment implements HomeView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvJobs=view.findViewById(R.id.rv_jobs);
+        progressBar=view.findViewById(R.id.progres_bar);
         pekerjaanAdapter=new PekerjaanAdapter(pekerjaanList,getContext(),this);
         rvJobs.setLayoutManager(new LinearLayoutManager(this.getContext()));
         rvJobs.setAdapter(pekerjaanAdapter);
         homePresenter=new HomePresenter(this);
+        progressBar.setVisibility(View.VISIBLE);
         homePresenter.getData();
     }
 
@@ -59,11 +63,13 @@ public class HomeFragment extends Fragment implements HomeView {
                .putExtra("id_vacancies",String.valueOf(pekerjaan.getId()))
                .putExtra("tanggal",pekerjaan.getTanggal())
                .putExtra("judul",pekerjaan.getTitle())
-               .putExtra("keterangan",pekerjaan.getKeterangan()));
+               .putExtra("keterangan",pekerjaan.getKeterangan())
+               .putExtra("type",pekerjaan.getType()));
     }
 
     @Override
     public void getDataSuccses(List<Pekerjaan> pekerjaan) {
+        progressBar.setVisibility(View.INVISIBLE);
         pekerjaanList.clear();
         pekerjaanList.addAll(pekerjaan);
         pekerjaanAdapter.notifyDataSetChanged();
