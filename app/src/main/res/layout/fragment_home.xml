@@ -5,9 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".View.Fragment.Home.HomeFragment">
 <ProgressBar
-    android:layout_width="80dp"
+    android:layout_width="60dp"
     android:id="@+id/progres_bar"
-    android:layout_height="80dp"
+    android:layout_height="60dp"
     android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
     />
